@@ -55,6 +55,16 @@ color:#7a0000;
 font-size:13px;
 color:#666;
 }
+.form-status{
+font-size:14px;
+margin-top:12px;
+}
+.form-status.success{
+color:#146c2e;
+}
+.form-status.error{
+color:#b00020;
+}
 </style>
 </head>
 <body>
@@ -159,18 +169,68 @@ Menu/pricing sourced from publicly available social media/business material. Ava
 <div class="card">
 <h2>Contact</h2>
 
-<form action="https://formsubmit.co/mike@mgrnz.com" method="POST">
-<input type="hidden" name="_subject" value="River Valley Meats Website Enquiry">
+<form id="contact-form">
 <input type="text" name="name" placeholder="Your name" required style="width:100%;padding:10px;margin-bottom:10px;">
 <input type="email" name="email" placeholder="Your email" required style="width:100%;padding:10px;margin-bottom:10px;">
+<input type="tel" name="phone" placeholder="Your phone (optional)" style="width:100%;padding:10px;margin-bottom:10px;">
 <textarea name="message" placeholder="Message" required style="width:100%;padding:10px;height:120px;"></textarea>
 <br><br>
 <button class="button" type="submit">Send Message</button>
+<p id="contact-status" class="form-status" aria-live="polite"></p>
 </form>
 
 </div>
 
 </div>
+
+<script>
+const contactForm = document.getElementById("contact-form");
+const contactStatus = document.getElementById("contact-status");
+const submitButton = contactForm.querySelector("button[type='submit']");
+const supabaseFunctionUrl = "https://jqfodlzcsgfocyuawzyx.supabase.co/functions/v1/rvm-contact-form";
+const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpxZm9kbHpjc2dmb2N5dWF3enl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjExNjEzNTUsImV4cCI6MjA3NjczNzM1NX0.LLdRTNerb3J6WxQUg3tXUbKt7wDhOpm--nSlWAhYYqA";
+
+contactForm.addEventListener("submit", async (event) => {
+event.preventDefault();
+
+const formData = new FormData(contactForm);
+const payload = {
+name: formData.get("name"),
+email: formData.get("email"),
+phone: formData.get("phone"),
+message: formData.get("message"),
+};
+
+contactStatus.textContent = "Sending...";
+contactStatus.className = "form-status";
+submitButton.disabled = true;
+
+try {
+const response = await fetch(supabaseFunctionUrl, {
+method: "POST",
+headers: {
+"Content-Type": "application/json",
+"apikey": supabaseAnonKey,
+"Authorization": `Bearer ${supabaseAnonKey}`,
+},
+body: JSON.stringify(payload),
+});
+
+if (!response.ok) {
+throw new Error("Unable to send message");
+}
+
+contactForm.reset();
+contactStatus.textContent = "Thanks, your enquiry has been sent.";
+contactStatus.className = "form-status success";
+} catch (error) {
+contactStatus.textContent = "Sorry, the message could not be sent. Please contact River Valley Meats directly.";
+contactStatus.className = "form-status error";
+} finally {
+submitButton.disabled = false;
+}
+});
+</script>
 
 </body>
 </html>

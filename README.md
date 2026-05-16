@@ -9,10 +9,8 @@ Static GitHub Pages draft.
 4. Update Google Business Profile website URL to the GitHub Pages URL or custom domain.
 
 ## Contact form
-The form uses FormSubmit:
-https://formsubmit.co/rivervalleymeats2024@gmail.com
-
-The first submission may require the recipient to verify the email destination.
+The contact form posts JSON to the Supabase Edge Function:
+`rvm-contact-form`
 
 ## Owner edits needed
 - Confirm address/phone/hours.
