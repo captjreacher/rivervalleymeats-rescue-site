@@ -1,14 +1,138 @@
-
 <!DOCTYPE html>
-<div class="hero">
-  <img src="hero-disclaimer.png" alt="River Valley Meats">
-</div><html lang="en">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>River Valley Meats</title>
+<title>Private Access Portal | River Valley Meats</title>
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:#f5f5f5;color:#222;}
+:root{
+--gate-bg:#060914;
+--gate-panel:#0d1220;
+--gate-panel-strong:#11192a;
+--gate-text:#f4f7fb;
+--gate-muted:#9aa8bb;
+--gate-line:rgba(255,255,255,.13);
+--gate-accent:#48d7ff;
+--gate-accent-2:#7cf6c9;
+--gate-error:#ff8b94;
+--gate-success:#7cf6c9;
+--ink:#222;
+--muted:#666;
+--paper:#f5f5f5;
+--brand:#7a0000;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--paper);color:var(--ink)}
+body.gate-active{background:
+radial-gradient(circle at 18% 12%,rgba(72,215,255,.14),transparent 32rem),
+radial-gradient(circle at 82% 10%,rgba(124,246,201,.09),transparent 28rem),
+linear-gradient(145deg,#040711 0%,#0b1020 48%,#070912 100%);
+color:var(--gate-text);
+min-height:100vh;
+}
+body.gate-active #site-content{display:none}
+body:not(.gate-active) #access-gate{display:none}
+.access-shell{
+min-height:100vh;
+display:grid;
+place-items:center;
+padding:clamp(20px,4vw,48px);
+}
+.access-card{
+width:min(100%,620px);
+background:linear-gradient(180deg,rgba(17,25,42,.94),rgba(9,14,27,.96));
+border:1px solid var(--gate-line);
+border-radius:18px;
+padding:clamp(24px,5vw,42px);
+box-shadow:0 24px 90px rgba(0,0,0,.48);
+}
+.access-brand{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.access-mark{
+display:grid;
+place-items:center;
+width:46px;
+height:46px;
+border-radius:13px;
+background:linear-gradient(135deg,var(--gate-accent),var(--gate-accent-2));
+color:#031018;
+font-weight:900;
+letter-spacing:-.02em;
+}
+.access-brand strong{display:block;font-size:1.08rem}
+.access-brand span{display:block;color:var(--gate-muted);font-size:.82rem;margin-top:2px}
+.access-eyebrow{
+margin:0 0 10px;
+color:var(--gate-accent-2);
+font-size:.76rem;
+font-weight:800;
+letter-spacing:.16em;
+text-transform:uppercase;
+}
+.access-card h1{margin:0 0 10px;font-size:clamp(2rem,7vw,3.35rem);line-height:1.02;letter-spacing:0}
+.access-intro{margin:0 0 26px;color:var(--gate-muted);font-size:1rem;line-height:1.6}
+.access-form label,.contact-form label{display:block;font-weight:750;margin-bottom:16px;color:var(--gate-text)}
+.access-form input,.contact-form input,.contact-form textarea{
+width:100%;
+margin-top:8px;
+padding:13px 14px;
+border-radius:10px;
+border:1px solid var(--gate-line);
+background:rgba(255,255,255,.055);
+color:var(--gate-text);
+font:inherit;
+outline:none;
+transition:border-color .2s ease,box-shadow .2s ease,background .2s ease;
+}
+.access-form input:focus,.contact-form input:focus,.contact-form textarea:focus{
+border-color:rgba(72,215,255,.8);
+box-shadow:0 0 0 4px rgba(72,215,255,.12);
+background:rgba(255,255,255,.075);
+}
+.access-form input::placeholder,.contact-form input::placeholder,.contact-form textarea::placeholder{color:#718198}
+.button{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+width:auto;
+min-height:46px;
+padding:12px 18px;
+border:0;
+border-radius:10px;
+background:linear-gradient(135deg,var(--gate-accent),var(--gate-accent-2));
+color:#031018;
+font-weight:850;
+font:inherit;
+text-decoration:none;
+cursor:pointer;
+}
+.button:disabled{opacity:.62;cursor:not-allowed}
+.access-form .button{width:100%}
+.gate-status,.form-status{font-size:14px;min-height:20px;margin:12px 0 0}
+.gate-status.error,.form-status.error{color:var(--gate-error)}
+.form-status.success{color:var(--gate-success)}
+.divider{
+display:grid;
+grid-template-columns:1fr auto 1fr;
+gap:14px;
+align-items:center;
+margin:30px 0;
+color:var(--gate-muted);
+font-size:.78rem;
+letter-spacing:.14em;
+text-transform:uppercase;
+}
+.divider::before,.divider::after{content:"";height:1px;background:var(--gate-line)}
+.contact-form{
+padding:22px;
+border:1px solid var(--gate-line);
+border-radius:14px;
+background:rgba(255,255,255,.035);
+}
+.contact-form h2{margin:0 0 8px;font-size:1.2rem;color:var(--gate-text)}
+.contact-form p{margin:0 0 18px;color:var(--gate-muted);line-height:1.55}
+.contact-form textarea{min-height:112px;resize:vertical}
+.access-footnote{margin:22px 0 0;color:#74849a;font-size:.82rem;text-align:center}
 .top-banner{
 background:#cc0000;
 color:white;
@@ -16,24 +140,22 @@ padding:14px;
 text-align:center;
 font-size:14px;
 font-weight:bold;
-letter-spacing:0.5px;
+letter-spacing:.5px;
 }
-.hero img{width:100%;display:block;}
-.container{max-width:1100px;margin:auto;padding:30px 20px;}
+.hero img{width:100%;display:block}
+.container{max-width:1100px;margin:auto;padding:30px 20px}
 .card{
 background:white;
 padding:24px;
 margin-bottom:24px;
 border-radius:10px;
-box-shadow:0 2px 8px rgba(0,0,0,0.08);
+box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
-.button{
+#site-content .button{
 display:inline-block;
-background:#7a0000;
+background:var(--brand);
 color:white;
-padding:12px 18px;
 border-radius:6px;
-text-decoration:none;
 margin-top:10px;
 }
 .grid{
@@ -47,34 +169,91 @@ border-radius:8px;
 padding:16px;
 background:#fafafa;
 }
-.pack h3{
-margin-top:0;
-color:#7a0000;
+.pack h3{margin-top:0;color:var(--brand)}
+.small{font-size:13px;color:var(--muted)}
+#site-content .form-status.success{color:#146c2e}
+#site-content .form-status.error{color:#b00020}
+#site-content input,#site-content textarea{
+width:100%;
+padding:10px;
+margin-bottom:10px;
+border:1px solid #ccc;
+border-radius:4px;
+font:inherit;
+color:#222;
+background:#fff;
 }
-.small{
-font-size:13px;
-color:#666;
-}
-.form-status{
-font-size:14px;
-margin-top:12px;
-}
-.form-status.success{
-color:#146c2e;
-}
-.form-status.error{
-color:#b00020;
+#site-content textarea{height:120px}
+.hidden{display:none!important}
+@media(max-width:640px){
+.access-shell{padding:14px}
+.access-card{border-radius:14px;padding:22px}
+.contact-form{padding:18px}
+.access-brand{align-items:flex-start}
+.access-card h1{font-size:2.05rem}
 }
 </style>
 </head>
-<body>
+<body class="gate-active">
+<section id="access-gate" class="access-shell" aria-labelledby="access-title">
+<div class="access-card">
+<div class="access-brand" aria-label="Maximised AI">
+<div class="access-mark">AI</div>
+<div>
+<strong>MaximisedAI</strong>
+<span>Automate Your Potential</span>
+</div>
+</div>
 
+<p class="access-eyebrow">Private Access Portal</p>
+<h1 id="access-title">Private site access</h1>
+<p class="access-intro">Enter the current access password to view the River Valley Meats temporary site, or request access below.</p>
+
+<form id="password-form" class="access-form">
+<label for="site-password">Password
+<input id="site-password" name="password" type="password" autocomplete="current-password" placeholder="Enter password" required>
+</label>
+<button class="button" type="submit">Access Site</button>
+<p id="password-status" class="gate-status" aria-live="polite"></p>
+</form>
+
+<div class="divider">Access request</div>
+
+<div class="contact-form">
+<h2>Request access</h2>
+<p>Send a short note and we will come back to you with access details.</p>
+<form id="access-request-form" class="js-contact-form">
+<label for="contact-name">Name
+<input id="contact-name" type="text" name="name" placeholder="Your name" required>
+</label>
+<label for="contact-email">Email
+<input id="contact-email" type="email" name="email" placeholder="Your email" required>
+</label>
+<label for="contact-phone">Phone
+<input id="contact-phone" type="tel" name="phone" placeholder="Your phone (optional)">
+</label>
+<label for="contact-message">Message
+<textarea id="contact-message" name="message" placeholder="Message" required></textarea>
+</label>
+<button class="button" type="submit">Send Request</button>
+<p id="contact-status" class="form-status" aria-live="polite"></p>
+</form>
+</div>
+
+<p class="access-footnote">Temporary access page for River Valley Meats.</p>
+</div>
+</section>
+
+<div id="site-content">
 <div class="top-banner">
-PRIVATE TEMPORARY COMMUNITY SUPPORT WEBSITE • NOT OFFICIAL • CREATED TO ASSIST DURING GOOGLE LISTING ISSUE
+PRIVATE TEMPORARY COMMUNITY SUPPORT WEBSITE &bull; NOT OFFICIAL &bull; CREATED TO ASSIST DURING GOOGLE LISTING ISSUE
+</div>
+
+<div class="hero">
+<img src="hero-disclaimer.png" alt="River Valley Meats">
 </div>
 
 <div class="container">
-
 <div class="card">
 <h1>River Valley Meats</h1>
 
@@ -90,7 +269,6 @@ This temporary website has been created to help customers safely find business i
 <h2>Popular Meat Packs</h2>
 
 <div class="grid">
-
 <div class="pack">
 <h3>$65 Pack A</h3>
 <ul>
@@ -142,7 +320,7 @@ This temporary website has been created to help customers safely find business i
 <li>1kg Rump</li>
 <li>1kg Sausages</li>
 <li>1/2kg Bacon</li>
-<li>Roast Chicken 1.2kg–1.5kg</li>
+<li>Roast Chicken 1.2kg-1.5kg</li>
 <li>1/2kg Chicken Breast</li>
 </ul>
 </div>
@@ -157,42 +335,74 @@ This temporary website has been created to help customers safely find business i
 <li>1kg Bacon</li>
 </ul>
 </div>
-
 </div>
 
 <p class="small">
 Menu/pricing sourced from publicly available social media/business material. Availability may vary.
 </p>
-
 </div>
 
 <div class="card">
 <h2>Contact</h2>
 
-<form id="contact-form">
-<input type="text" name="name" placeholder="Your name" required style="width:100%;padding:10px;margin-bottom:10px;">
-<input type="email" name="email" placeholder="Your email" required style="width:100%;padding:10px;margin-bottom:10px;">
-<input type="tel" name="phone" placeholder="Your phone (optional)" style="width:100%;padding:10px;margin-bottom:10px;">
-<textarea name="message" placeholder="Message" required style="width:100%;padding:10px;height:120px;"></textarea>
+<form id="contact-form" class="js-contact-form">
+<input type="text" name="name" placeholder="Your name" required>
+<input type="email" name="email" placeholder="Your email" required>
+<input type="tel" name="phone" placeholder="Your phone (optional)">
+<textarea name="message" placeholder="Message" required></textarea>
 <br><br>
 <button class="button" type="submit">Send Message</button>
-<p id="contact-status" class="form-status" aria-live="polite"></p>
+<p class="form-status" aria-live="polite"></p>
 </form>
 
 </div>
-
+</div>
 </div>
 
-<script>
-const contactForm = document.getElementById("contact-form");
-const contactStatus = document.getElementById("contact-status");
-const submitButton = contactForm.querySelector("button[type='submit']");
+<script type="module">
+const accessGate = document.getElementById("access-gate");
+const passwordForm = document.getElementById("password-form");
+const passwordInput = document.getElementById("site-password");
+const passwordStatus = document.getElementById("password-status");
+const contactForms = document.querySelectorAll(".js-contact-form");
+const accessKey = "rvm_access";
+const configuredPassword = import.meta.env?.VITE_SITE_PASSWORD || "changeme";
+// Reuses the existing Supabase Edge Function endpoint: rvm-contact-form.
 const supabaseFunctionUrl = "https://jqfodlzcsgfocyuawzyx.supabase.co/functions/v1/rvm-contact-form";
 const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpxZm9kbHpjc2dmb2N5dWF3enl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjExNjEzNTUsImV4cCI6MjA3NjczNzM1NX0.LLdRTNerb3J6WxQUg3tXUbKt7wDhOpm--nSlWAhYYqA";
 
+function unlockSite() {
+sessionStorage.setItem(accessKey, "true");
+document.body.classList.remove("gate-active");
+accessGate.setAttribute("aria-hidden", "true");
+}
+
+if (sessionStorage.getItem(accessKey) === "true") {
+unlockSite();
+} else {
+document.body.classList.add("gate-active");
+}
+
+passwordForm.addEventListener("submit", (event) => {
+event.preventDefault();
+
+if (passwordInput.value === configuredPassword) {
+unlockSite();
+passwordInput.value = "";
+return;
+}
+
+passwordStatus.textContent = "Password not recognised.";
+passwordStatus.className = "gate-status error";
+passwordInput.select();
+});
+
+contactForms.forEach((contactForm) => {
 contactForm.addEventListener("submit", async (event) => {
 event.preventDefault();
 
+const contactStatus = contactForm.querySelector(".form-status");
+const submitButton = contactForm.querySelector("button[type='submit']");
 const formData = new FormData(contactForm);
 const payload = {
 name: formData.get("name"),
@@ -221,7 +431,7 @@ throw new Error("Unable to send message");
 }
 
 contactForm.reset();
-contactStatus.textContent = "Thanks, your enquiry has been sent.";
+contactStatus.textContent = "Thanks, your request has been sent.";
 contactStatus.className = "form-status success";
 } catch (error) {
 contactStatus.textContent = "Sorry, the message could not be sent. Please contact River Valley Meats directly.";
@@ -230,7 +440,7 @@ contactStatus.className = "form-status error";
 submitButton.disabled = false;
 }
 });
+});
 </script>
-
 </body>
 </html>
