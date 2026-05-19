@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Private Access Portal | River Valley Meats</title>
+<title>Private Access | River Valley Meats</title>
 <style>
 :root{
---gate-bg:#060914;
---gate-panel:#0d1220;
---gate-panel-strong:#11192a;
---gate-text:#f4f7fb;
---gate-muted:#9aa8bb;
---gate-line:rgba(255,255,255,.13);
---gate-accent:#48d7ff;
---gate-accent-2:#7cf6c9;
---gate-error:#ff8b94;
---gate-success:#7cf6c9;
+--gate-bg:#050505;
+--gate-panel:#111111;
+--gate-panel-strong:#171717;
+--gate-text:#f5f1ea;
+--gate-muted:#a8a29e;
+--gate-line:rgba(255,132,0,.28);
+--gate-accent:#ff7a00;
+--gate-accent-2:#b1123a;
+--gate-error:#ffb199;
+--gate-success:#ffb45f;
 --ink:#222;
 --muted:#666;
 --paper:#f5f5f5;
@@ -24,9 +24,9 @@
 *{box-sizing:border-box}
 body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--paper);color:var(--ink)}
 body.gate-active{background:
-radial-gradient(circle at 18% 12%,rgba(72,215,255,.14),transparent 32rem),
-radial-gradient(circle at 82% 10%,rgba(124,246,201,.09),transparent 28rem),
-linear-gradient(145deg,#040711 0%,#0b1020 48%,#070912 100%);
+radial-gradient(circle at 18% 8%,rgba(255,122,0,.12),transparent 28rem),
+radial-gradient(circle at 86% 18%,rgba(177,18,58,.16),transparent 30rem),
+linear-gradient(145deg,#050505 0%,#0b0b0b 48%,#070404 100%);
 color:var(--gate-text);
 min-height:100vh;
 }
@@ -39,56 +39,68 @@ place-items:center;
 padding:clamp(20px,4vw,48px);
 }
 .access-card{
-width:min(100%,620px);
-background:linear-gradient(180deg,rgba(17,25,42,.94),rgba(9,14,27,.96));
+width:min(100%,600px);
+background:linear-gradient(180deg,rgba(23,23,23,.96),rgba(12,12,12,.98));
 border:1px solid var(--gate-line);
-border-radius:18px;
-padding:clamp(24px,5vw,42px);
-box-shadow:0 24px 90px rgba(0,0,0,.48);
+border-radius:16px;
+padding:clamp(24px,5vw,40px);
+box-shadow:0 24px 90px rgba(0,0,0,.56);
 }
-.access-brand{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.access-powered{
+display:inline-flex;
+align-items:center;
+gap:10px;
+width:auto;
+margin-bottom:30px;
+padding:6px 11px 6px 6px;
+border:1px solid rgba(255,132,0,.24);
+border-radius:999px;
+background:rgba(255,122,0,.055);
+color:var(--gate-muted);
+font-size:.82rem;
+font-weight:700;
+}
 .access-mark{
 display:grid;
 place-items:center;
-width:46px;
-height:46px;
-border-radius:13px;
-background:linear-gradient(135deg,var(--gate-accent),var(--gate-accent-2));
-color:#031018;
-font-weight:900;
-letter-spacing:-.02em;
+width:30px;
+height:30px;
+border-radius:50%;
+background:linear-gradient(145deg,rgba(255,122,0,.2),rgba(177,18,58,.2));
+color:var(--gate-accent);
+box-shadow:inset 0 0 0 1px rgba(255,132,0,.24);
 }
-.access-brand strong{display:block;font-size:1.08rem}
-.access-brand span{display:block;color:var(--gate-muted);font-size:.82rem;margin-top:2px}
+.access-mark svg{width:16px;height:16px;display:block}
+.access-powered strong{color:var(--gate-text);font-weight:800}
 .access-eyebrow{
 margin:0 0 10px;
-color:var(--gate-accent-2);
+color:var(--gate-accent);
 font-size:.76rem;
 font-weight:800;
 letter-spacing:.16em;
 text-transform:uppercase;
 }
-.access-card h1{margin:0 0 10px;font-size:clamp(2rem,7vw,3.35rem);line-height:1.02;letter-spacing:0}
-.access-intro{margin:0 0 26px;color:var(--gate-muted);font-size:1rem;line-height:1.6}
+.access-card h1{margin:0 0 8px;font-size:clamp(2.15rem,7vw,3.55rem);line-height:1;letter-spacing:0}
+.access-intro{margin:0 0 28px;color:var(--gate-muted);font-size:1.02rem;line-height:1.55}
 .access-form label,.contact-form label{display:block;font-weight:750;margin-bottom:16px;color:var(--gate-text)}
 .access-form input,.contact-form input,.contact-form textarea{
 width:100%;
 margin-top:8px;
 padding:13px 14px;
 border-radius:10px;
-border:1px solid var(--gate-line);
-background:rgba(255,255,255,.055);
+border:1px solid rgba(255,255,255,.12);
+background:rgba(255,255,255,.045);
 color:var(--gate-text);
 font:inherit;
 outline:none;
 transition:border-color .2s ease,box-shadow .2s ease,background .2s ease;
 }
 .access-form input:focus,.contact-form input:focus,.contact-form textarea:focus{
-border-color:rgba(72,215,255,.8);
-box-shadow:0 0 0 4px rgba(72,215,255,.12);
+border-color:rgba(255,122,0,.78);
+box-shadow:0 0 0 4px rgba(255,122,0,.13);
 background:rgba(255,255,255,.075);
 }
-.access-form input::placeholder,.contact-form input::placeholder,.contact-form textarea::placeholder{color:#718198}
+.access-form input::placeholder,.contact-form input::placeholder,.contact-form textarea::placeholder{color:#78716c}
 .button{
 display:inline-flex;
 align-items:center;
@@ -99,8 +111,8 @@ min-height:46px;
 padding:12px 18px;
 border:0;
 border-radius:10px;
-background:linear-gradient(135deg,var(--gate-accent),var(--gate-accent-2));
-color:#031018;
+background:linear-gradient(135deg,#ff8a1f 0%,#ff7a00 46%,#b1123a 140%);
+color:#160b04;
 font-weight:850;
 font:inherit;
 text-decoration:none;
@@ -122,17 +134,17 @@ font-size:.78rem;
 letter-spacing:.14em;
 text-transform:uppercase;
 }
-.divider::before,.divider::after{content:"";height:1px;background:var(--gate-line)}
+.divider::before,.divider::after{content:"";height:1px;background:rgba(255,132,0,.2)}
 .contact-form{
 padding:22px;
 border:1px solid var(--gate-line);
-border-radius:14px;
-background:rgba(255,255,255,.035);
+border-radius:12px;
+background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.02));
 }
 .contact-form h2{margin:0 0 8px;font-size:1.2rem;color:var(--gate-text)}
 .contact-form p{margin:0 0 18px;color:var(--gate-muted);line-height:1.55}
 .contact-form textarea{min-height:112px;resize:vertical}
-.access-footnote{margin:22px 0 0;color:#74849a;font-size:.82rem;text-align:center}
+.access-footnote{margin:22px 0 0;color:#8b837d;font-size:.82rem;text-align:center}
 .top-banner{
 background:#cc0000;
 color:white;
@@ -189,7 +201,6 @@ background:#fff;
 .access-shell{padding:14px}
 .access-card{border-radius:14px;padding:22px}
 .contact-form{padding:18px}
-.access-brand{align-items:flex-start}
 .access-card h1{font-size:2.05rem}
 }
 </style>
@@ -197,17 +208,21 @@ background:#fff;
 <body class="gate-active">
 <section id="access-gate" class="access-shell" aria-labelledby="access-title">
 <div class="access-card">
-<div class="access-brand" aria-label="Maximised AI">
-<div class="access-mark">AI</div>
-<div>
-<strong>MaximisedAI</strong>
-<span>Automate Your Potential</span>
-</div>
+<div class="access-powered" aria-label="Powered by Maximised AI">
+<span class="access-mark" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" role="img">
+<path d="M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+<path d="M15 4l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+<path d="M6 4l.7 1.8L8.5 6.5 6.7 7.2 6 9 5.3 7.2 3.5 6.5l1.8-.7L6 4z" fill="currentColor"/>
+<path d="M18 14l.8 2.2L21 17l-2.2.8L18 20l-.8-2.2L15 17l2.2-.8L18 14z" fill="currentColor"/>
+</svg>
+</span>
+<span>Powered by <strong>Maximised AI</strong></span>
 </div>
 
-<p class="access-eyebrow">Private Access Portal</p>
-<h1 id="access-title">Private site access</h1>
-<p class="access-intro">Enter the current access password to view the River Valley Meats temporary site, or request access below.</p>
+<p class="access-eyebrow">River Valley Meats</p>
+<h1 id="access-title">Private Access</h1>
+<p class="access-intro">River Valley Meats staging portal</p>
 
 <form id="password-form" class="access-form">
 <label for="site-password">Password
@@ -217,7 +232,7 @@ background:#fff;
 <p id="password-status" class="gate-status" aria-live="polite"></p>
 </form>
 
-<div class="divider">Access request</div>
+<div class="divider">Need access?</div>
 
 <div class="contact-form">
 <h2>Request access</h2>
